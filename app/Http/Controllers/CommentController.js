@@ -43,7 +43,9 @@ class CommentController {
 	* update(request, response){
 		let commentId = request.param('comment_id')
 		let comment = yield Comment.findBy('id', commentId)
-		let data = request.only('content')
+		let data = request.only('content', 'likes')
+
+		console.log(data)
 
 		if (!comment){
 			response.status(404).json({text: "Comment not found"})
@@ -53,7 +55,6 @@ class CommentController {
 			response.status(201).json(comment)
 		}
 	}
-
 }
 
 module.exports = CommentController

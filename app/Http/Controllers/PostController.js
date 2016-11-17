@@ -41,7 +41,6 @@ class PostController {
 		let postId = request.param('post_id')
 		let post = yield Post.findBy('id', postId)
 		let data = request.only('title', 'description', 'destination_url', 'likes')
-		console.log(postId)
 
 		if (!post){
 			response.status(404).json({text: "Post not found"})
