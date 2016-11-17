@@ -15,8 +15,8 @@ const globalMiddleware = [
   'Adonis/Middleware/Cors',
   'Adonis/Middleware/BodyParser',
   'Adonis/Middleware/Shield',
-  'Adonis/Middleware/Flash'
-  // 'Adonis/Middleware/AuthInit'
+  'Adonis/Middleware/Flash',
+  'Adonis/Middleware/AuthInit'
 ]
 
 /*
