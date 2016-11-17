@@ -43,10 +43,13 @@ class PostController {
 		let data = request.only('title', 'description', 'destination_url', 'likes')
 		console.log(postId)
 
-		post.fill(data)
-
-		yield post.save()
-		response.status(201).json(post)
+		if (!post){
+			response.status(404).json({text: "Post not found"})
+		} else {
+			post.fill(data)
+			yield post.save()
+			response.status(201).json(post)
+		}
 	}
 }
 

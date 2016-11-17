@@ -1,11 +1,14 @@
 'use strict'
 
+const Comment = use('App/Model/Comment')
+
+
 class CommentController {
 
 	* create (request, response) {
 		let data = request.only('content');
 		data.likes = 0;
-		let postsId = request.param('post_id');
+		let postId = request.param('post_id');
 		data.posts_id = postId;
 
 		let comment = yield Comment.create(data)
@@ -42,10 +45,13 @@ class CommentController {
 		let comment = yield Comment.findBy('id', commentId)
 		let data = request.only('content')
 
-		comment.fill(data)
-
-		yield comment.save()
-		response.status(201).json(comment)
+		if (!comment){
+			response.status(404).json({text: "Comment not found"})
+		} else {
+			comment.fill(data)
+			yield comment.save()
+			response.status(201).json(comment)
+		}
 	}
 
 }

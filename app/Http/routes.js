@@ -26,6 +26,6 @@ Route.delete('/posts/:post_id', 'PostController.delete');
 
 
 Route.get('/posts/:post_id/comments', 'CommentController.show');
-Route.post('/posts/:post_id/comments', 'CommentControler.post');
+Route.post('/posts/:post_id/comments', 'CommentController.create');
 Route.patch('/posts/:post_id/comments/:comment_id', 'CommentController.update')
 Route.delete('/posts/:post_id/comments/:comment_id', 'CommentController.delete')
