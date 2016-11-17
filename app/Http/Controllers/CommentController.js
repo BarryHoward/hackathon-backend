@@ -45,8 +45,6 @@ class CommentController {
 		let comment = yield Comment.findBy('id', commentId)
 		let data = request.only('content', 'likes')
 
-		console.log(data)
-
 		if (!comment){
 			response.status(404).json({text: "Comment not found"})
 		} else {
