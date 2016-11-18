@@ -19,13 +19,15 @@ const Route = use('Route')
 
 Route.on('/').render('welcome')
 
-Route.get('/posts', 'PostController.show');
+Route.get('/posts', 'PostController.index');
 Route.post('/posts', 'PostController.create');
+Route.get('/posts/:post_id', 'PostController.show')
 Route.patch('/posts/:post_id', 'PostController.update');
 Route.delete('/posts/:post_id', 'PostController.delete');
 
 
-Route.get('/posts/:post_id/comments', 'CommentController.show');
+Route.get('/posts/:post_id/comments', 'CommentController.index');
 Route.post('/posts/:post_id/comments', 'CommentController.create');
+Route.get('/posts/:post_id/comments/:comment_id', 'CommentController.show')
 Route.patch('/posts/:post_id/comments/:comment_id', 'CommentController.update')
 Route.delete('/posts/:post_id/comments/:comment_id', 'CommentController.delete')

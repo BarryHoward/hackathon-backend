@@ -14,12 +14,18 @@ class PostController {
 		response.status(201).json(post)
 	}
 
-	* show (request, response){
+	* index(request, response){
 		const post_list = yield Post.query().table('posts')
 		.orderBy('likes', 'desc')
 		.orderBy('created_at', 'desc')
 		.limit(50)
-		response.json(post_list)
+		response.status(201).json(post_list)
+	}
+
+	* show(request, response){
+		let post_id = request.param("post_id")
+		let post = yield Post.findBy('id', post_id)
+		response.status(201).json(post)
 	}
 
 	* delete (request, response){

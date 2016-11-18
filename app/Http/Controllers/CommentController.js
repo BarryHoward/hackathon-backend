@@ -31,13 +31,19 @@ class CommentController {
 
 	}
 
-	* show (request, response){
+	* index (request, response){
 		let postId = request.param('post_id')
 		const comment_list = yield Comment.query().table('comments')
 		.where('posts_id', postId)
 		.orderBy('likes', 'desc')
 		.orderBy('created_at', 'desc')
-		response.json(comment_list)
+		response.status(201).json(comment_list)
+	}
+
+	* show (request, response){
+		let commentId = request.param('comment_id')
+		let comment = yield Comment.findBy('id', commentId)
+		response.status(201).json(comment)
 	}
 
 	* update(request, response){
