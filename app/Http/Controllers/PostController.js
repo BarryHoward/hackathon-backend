@@ -1,6 +1,7 @@
 'use strict'
 
 const Post = use('App/Model/Post')
+const Comment = use('App/Model/Comment')
 
 class PostController {
 
@@ -29,7 +30,13 @@ class PostController {
 	}
 
 	* delete (request, response){
+
 		let post_id = request.param("post_id")
+
+		const comment_list = yield Comment.query().table('comments')
+		.where('post_id', post_id)
+
+		yield comment_list.delete();
 
 		let post = yield Post.findBy('id', post_id)
 
