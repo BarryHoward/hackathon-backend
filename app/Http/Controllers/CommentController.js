@@ -36,7 +36,7 @@ class CommentController {
 		const comment_list = yield Comment.query().table('comments')
 		.where('posts_id', postId)
 		.orderBy('likes', 'desc')
-		.orderBy('created_at', 'desc')
+		.orderBy('created_at', 'asc')
 		response.status(201).json(comment_list)
 	}
 
