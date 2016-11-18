@@ -34,9 +34,13 @@ class PostController {
 		let post_id = request.param("post_id")
 
 		const comment_list = yield Comment.query().table('comments')
-		.where('post_id', post_id)
+		.where('posts_id', post_id)
 
-		yield comment_list.delete();
+		for (var i=0; i<comment_list.length; i++){
+			console.log(comment_list[i])
+			let deletedComment = yield Comment.find(comment_list[i].id)
+			yield deletedComment.delete();
+		}
 
 		let post = yield Post.findBy('id', post_id)
 
